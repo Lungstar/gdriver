@@ -1,0 +1,17 @@
+# Render blueprint. NOTE: persistent disks require a paid Render plan.
+# On the free plan the SQLite file lives on an ephemeral filesystem and is
+# reset on every deploy/restart — fine for a quick demo, not for persistence.
+# For free persistent storage, use the Fly.io path in README.md instead.
+services:
+  - type: web
+    name: ajaia-docs
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: DB_PATH
+        value: /data/ajaia.db
+    disk:
+      name: ajaia-data
+      mountPath: /data
+      sizeGB: 1

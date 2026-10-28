@@ -1,0 +1,11 @@
+Walkthrough video (3–5 min, unlisted Loom/YouTube):
+
+<PASTE VIDEO URL HERE AFTER RECORDING>
+
+Suggested outline (matches the assignment's asks):
+1. 0:00–0:45 — Main flow: login as Alice, create, format, autosave, refresh-persists
+2. 0:45–1:45 — Import a .md/.docx file; export .md
+3. 1:45–2:45 — Sharing: Bob edits, Carol view-only (show the 403/read-only UI)
+4. 2:45–3:30 — What was deprioritized and why (realtime, auth, history)
+5. 3:30–4:30 — Key decisions (sanitizer allowlist, roleFor enforcement, execCommand tradeoff)
+6. 4:30–5:00 — How AI was used + what was rejected (see AI-NOTES.md)

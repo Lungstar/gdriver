@@ -1,0 +1,230 @@
+* { box-sizing: border-box; }
+
+/* The hidden attribute must win over component display styles below. */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1a1a1a;
+  background: #f5f5f7;
+}
+
+h1 { font-size: 28px; }
+h2 { font-size: 17px; margin: 24px 0 10px; }
+.muted { color: #777; }
+.small { font-size: 12px; }
+.spacer { flex: 1; }
+
+/* ---------- header ---------- */
+.top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.brand { font-weight: 700; }
+.top a { color: #1a73e8; text-decoration: none; }
+.top a:hover { text-decoration: underline; }
+
+#title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: transparent;
+}
+#title:hover:not(:disabled) { border-color: #e0e0e0; }
+#title:focus { border-color: #1a73e8; outline: none; background: #fff; }
+#title:disabled { color: #1a1a1a; }
+
+/* ---------- buttons ---------- */
+button, .btn, .filebtn {
+  cursor: pointer;
+  padding: 7px 14px;
+  border: 1px solid #d5d5d5;
+  background: #fff;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1a1a1a;
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover, .btn:hover, .filebtn:hover { background: #f0f0f0; }
+button.primary, .btn.primary { background: #1a73e8; border-color: #1a73e8; color: #fff; }
+button.primary:hover { background: #1765cc; }
+button.link { border: none; background: none; color: #1a73e8; padding: 4px; }
+button.link:hover { text-decoration: underline; background: none; }
+button.del {
+  border: none;
+  background: none;
+  color: #999;
+  padding: 2px 6px;
+  font-size: 13px;
+  visibility: hidden;
+}
+li:hover button.del { visibility: visible; }
+button.del:hover { color: #c5221f; }
+
+/* ---------- login ---------- */
+.login { max-width: 420px; margin: 90px auto; text-align: center; }
+.userlist { display: grid; gap: 10px; margin: 20px 0; }
+.userlist button {
+  text-align: left;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-radius: 8px;
+}
+.userlist button small { color: #777; }
+.userlist button:hover { border-color: #1a73e8; }
+
+/* ---------- dashboard ---------- */
+.dash { max-width: 860px; margin: 24px auto; padding: 0 16px 60px; }
+.dash-head { display: flex; justify-content: space-between; align-items: center; }
+.dash-head h2 { margin: 0; }
+.actions { display: flex; gap: 8px; align-items: center; }
+
+.doclist {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.doclist li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+}
+.doclist li:last-child { border-bottom: none; }
+.doclist li:hover { background: #fafafa; }
+.doclist li.empty { color: #888; cursor: default; justify-content: center; }
+.doclist .title { flex: 1; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.doclist .meta { font-size: 12px; color: #888; white-space: nowrap; }
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.badge.edit { background: #e6f4ea; color: #137333; }
+.badge.read { background: #e8f0fe; color: #1a73e8; }
+
+/* ---------- editor ---------- */
+.banner {
+  background: #fef7e0;
+  color: #7a5d00;
+  text-align: center;
+  padding: 8px;
+  font-size: 13px;
+  border-bottom: 1px solid #f0e3b0;
+}
+.toolbar {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 8px 16px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 53px;
+  z-index: 4;
+}
+.toolbar button, .toolbar select {
+  padding: 5px 11px;
+  font-size: 13px;
+  border: 1px solid #d5d5d5;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.toolbar button:hover { background: #f0f0f0; }
+.toolbar .sep { width: 1px; height: 20px; background: #e0e0e0; margin: 0 6px; }
+
+.editor {
+  max-width: 800px;
+  margin: 24px auto 80px;
+  background: #fff;
+  min-height: 60vh;
+  padding: 48px 56px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  outline: none;
+  line-height: 1.6;
+}
+.editor h1 { font-size: 2em; margin: 0.5em 0; }
+.editor h2 { font-size: 1.5em; margin: 0.5em 0; }
+.editor h3 { font-size: 1.2em; margin: 0.5em 0; }
+.editor p { margin: 0.4em 0; }
+
+/* ---------- share panel ---------- */
+.panel {
+  max-width: 800px;
+  margin: -56px auto 80px;
+  background: #fff;
+  padding: 20px 24px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 6;
+}
+.panel h3 { margin: 0 0 12px; }
+.sharerow { display: flex; gap: 8px; margin-bottom: 14px; }
+.sharerow input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #d5d5d5;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.sharerow input:focus { border-color: #1a73e8; outline: none; }
+.sharerow select { border: 1px solid #d5d5d5; border-radius: 6px; background: #fff; }
+.sharelist { list-style: none; padding: 0; margin: 0; }
+.sharelist li { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid #f0f0f0; }
+.sharelist li span:first-child { flex: 1; }
+.sharelist li.empty { color: #888; border: none; }
+.sharelist button.del { visibility: visible; }
+
+/* ---------- toasts ---------- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #c5221f;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 100;
+  max-width: 80vw;
+}
+.toast.ok { background: #137333; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 640px) {
+  .editor { padding: 24px 20px; margin: 12px; }
+  .panel { margin: 0 12px 40px; }
+  .doclist .meta { display: none; }
+}
