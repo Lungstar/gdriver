@@ -1,7 +1,25 @@
+const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
 
-const DB_PATH = process.env.DB_PATH || path.join(__dirname, '..', 'data.db');
+// Prefer DB_PATH (e.g. a mounted volume at /data on a paid host). If its
+// directory isn't writable — e.g. Render free plan with no persistent disk —
+// fall back to a local file so the app still boots (data is then ephemeral).
+function resolveDbPath() {
+  const wanted = process.env.DB_PATH || path.join(__dirname, '..', 'data.db');
+  const dir = path.dirname(wanted);
+  try {
+    fs.mkdirSync(dir, { recursive: true });
+    fs.accessSync(dir, fs.constants.W_OK);
+    return wanted;
+  } catch {
+    const fallback = path.join(__dirname, '..', 'data.db');
+    console.warn(`[db] ${dir} not writable; falling back to ${fallback} (ephemeral)`);
+    return fallback;
+  }
+}
+
+const DB_PATH = resolveDbPath();
 const db = new Database(DB_PATH);
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');

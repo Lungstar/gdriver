@@ -66,8 +66,13 @@ anywhere Docker or Node runs. Configs are included:
   fly volumes create ajaia_data --size 1
   fly deploy
   ```
-- **Render:** `render.yaml` blueprint included. Note: persistent disks need a
-  paid plan; on the free tier the SQLite file is ephemeral (resets on restart).
+- **Render:** `render.yaml` blueprint included (works on free **and** paid
+  plans). The app uses `DB_PATH=/data/ajaia.db` when a persistent disk is
+  mounted there (paid), and automatically falls back to an ephemeral local file
+  when `/data` isn't writable (free) — so it deploys cleanly either way. On the
+  free tier the DB resets on restart and re-seeds the demo users on each boot.
+  To add persistence later: Dashboard → your service → Disks → Add Disk at
+  `/data` (no code change needed).
 - **Any Docker host:**
   ```bash
   docker build -t ajaia-docs .
