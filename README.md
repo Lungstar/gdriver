@@ -4,6 +4,14 @@ A small full-stack, Google Docs-inspired editor built in a 4–6 hour timebox.
 Rich-text editing with autosave, file import (`.txt` / `.md` / `.docx`), sharing
 with read/edit roles, Markdown export, and SQLite persistence.
 
+## Live demo
+
+**https://gdriver-lnc7.onrender.com**
+
+Hosted on Render (Docker). Free plan: the service sleeps when idle, so the
+first load may take ~30–60 s to wake. The three demo accounts below are seeded
+automatically — just pick one from the login screen.
+
 ## Quickstart
 
 ```bash
@@ -57,22 +65,25 @@ No other setup needed — a fresh database seeds itself with demo accounts.
 
 ## Deployment
 
+**This app is deployed on Render:** https://gdriver-lnc7.onrender.com (Docker
+web service built from this repo via the included `render.yaml` blueprint).
+
 The app is a single Node process serving both the API and the client — deploy it
 anywhere Docker or Node runs. Configs are included:
 
-- **Fly.io (recommended free path, real persistence):**
+- **Render (current host):** `render.yaml` blueprint included (works on free
+  **and** paid plans). The app uses `DB_PATH=/data/ajaia.db` when a persistent
+  disk is mounted there (paid), and automatically falls back to an ephemeral
+  local file when `/data` isn't writable (free) — so it deploys cleanly either
+  way. On the free tier the DB resets on restart and re-seeds the demo users on
+  each boot. To add persistence later: Dashboard → your service → Disks → Add
+  Disk at `/data` (no code change needed).
+- **Fly.io (alternative free path, real persistence):**
   ```bash
   fly launch --no-deploy        # adopts fly.toml
   fly volumes create ajaia_data --size 1
   fly deploy
   ```
-- **Render:** `render.yaml` blueprint included (works on free **and** paid
-  plans). The app uses `DB_PATH=/data/ajaia.db` when a persistent disk is
-  mounted there (paid), and automatically falls back to an ephemeral local file
-  when `/data` isn't writable (free) — so it deploys cleanly either way. On the
-  free tier the DB resets on restart and re-seeds the demo users on each boot.
-  To add persistence later: Dashboard → your service → Disks → Add Disk at
-  `/data` (no code change needed).
 - **Any Docker host:**
   ```bash
   docker build -t ajaia-docs .
