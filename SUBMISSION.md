@@ -11,10 +11,16 @@
 | This manifest | `SUBMISSION.md` |
 | Walkthrough video link | `VIDEO-URL.txt` |
 | Deployment configs | `Dockerfile`, `.dockerignore`, `fly.toml`, `render.yaml` |
+| Screenshots + demo files | `screenshots/` |
 
 ## Live deployment
 
-**URL:** _< paste deployed URL here after `fly deploy` / Render deploy — see README.md "Deployment" >_
+**URL:** https://thespian-deletion-amino.ngrok-free.dev
+
+Hosted via an **ngrok tunnel** to the app running on the developer's machine
+(Fly.io/Render configs are included for a permanent deploy — see README.md
+"Deployment"). First visit shows a one-time ngrok interstitial — click
+**"Visit Site"** to continue. Health check: `GET /api/health`.
 
 The deployment auto-seeds demo users on first boot; no setup steps are needed
 beyond opening the URL.
