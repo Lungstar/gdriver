@@ -15,12 +15,13 @@
 
 ## Live deployment
 
-**URL:** https://thespian-deletion-amino.ngrok-free.dev
+**URL:** https://gdriver-lnc7.onrender.com
 
-Hosted via an **ngrok tunnel** to the app running on the developer's machine
-(Fly.io/Render configs are included for a permanent deploy — see README.md
-"Deployment"). First visit shows a one-time ngrok interstitial — click
-**"Visit Site"** to continue. Health check: `GET /api/health`.
+Hosted on **Render** (Docker web service built from the GitHub repo). Free plan:
+the service sleeps after inactivity, so the **first request may take ~30–60 s**
+to wake — subsequent loads are fast. The SQLite DB is ephemeral on this tier
+(resets on restart) and re-seeds the three demo users on each boot. Health
+check: `GET /api/health`.
 
 The deployment auto-seeds demo users on first boot; no setup steps are needed
 beyond opening the URL.
